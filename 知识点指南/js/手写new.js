@@ -1,16 +1,12 @@
 function myNew(fn, ...args) {
-  let instance = Object.create(fn.prototype);
-  let res = fn.apply(instance, args); // 改变this指向
-  // 确保返回的是一个对象(万一fn不是构造函数)
-  return typeof res === 'object' ? res : instance;
+  let obj = Object.create(fn.prototype)
+  let res = fn.apply(obj, args)
+  return typeof res == 'object' ? res : obj
 }
 
-// 测试
-
-
-
-function aa() {
-  console.log(111)
+function fn1() {
+  console.log(111);
+  return [1, 23, 4]
 }
-
-aa()
+let a = myNew(fn1, 1213);
+console.log(a);
