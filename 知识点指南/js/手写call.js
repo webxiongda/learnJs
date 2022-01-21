@@ -12,7 +12,6 @@ Function.prototype.myCall = function (context = window, ...args) {
 
 }
 
-
 // 测试用例
 let a = "123123123"
 let obj = {

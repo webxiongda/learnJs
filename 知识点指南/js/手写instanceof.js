@@ -11,7 +11,5 @@ function myInstanceof(obj, class1) {
 }
 
 // 测试
-
 let arr = []
-
 console.log(myInstanceof(arr, Array));
