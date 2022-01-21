@@ -1,0 +1,2 @@
+- border-box 设置 width 为 100px,它的 border 和 padding 不会收到影响,而自身 content 区域回缩小
+- content-box 而 content-box 不会,它的 border 和 padding 会额外计算为整体元素上

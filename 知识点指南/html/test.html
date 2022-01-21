@@ -6,41 +6,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .content {
+      width: 100px;
+      height: 100px;
+      border: 20px solid #ccc;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .content1 {
+      box-sizing: content-box;
+      width: 100px;
+      height: 100px;
+      padding: 20px;
+      border: 20px solid #ccc;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="content"></div>
+  <div class="content1"></div>
+
   <script>
-    Function.prototype.myBind = function (context, ...outerArgs) {
-      // this->func context->obj outerArgs->[10,20]
-      let self = this
-      // 返回一个函数
-      return function (...innerArgs) { //返回了一个函数，...innerArgs为实际调用时传入的参数
-        // 把func执行，并且改变this即可
-        return self.apply(context, [...outerArgs, ...innerArgs]) //返回改变了this的函数，参数合并
-      }
-    }
-
-    // 测试用例
-    let a = "123123123"
-    let obj = {
-      a: "12",
-      o: {
-      }
-    }
-
-
-    function demo(...args) {
-      console.log(this.a)
-      console.log(args);
-    }
-
-    demo.myBind(obj, 123)(123)
-
-
-
-
-
-
+    let dom = document.querySelector('.content')
+    console.log(dom.style);
   </script>
 </body>
 
