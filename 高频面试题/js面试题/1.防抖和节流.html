@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>防抖和节流</title>
+  </head>
+  <body>
+    <input type="button" value="防抖提交" />
+    <input type="text" name="" id="text" />
+    <script>
+      {
+        /**
+         * 防抖函数：
+         * 当按钮在delay时间内多次按下时，只执行最后按下的一次，常用于拍照按钮、表单提交按钮
+         */
+        const button = document.querySelector("input");
+        /**
+         * 防抖函数核心实现：
+         * 1.注意修改this的指向，我们希望this指向按钮
+         * 2.当在delay时间间隔内按下按钮时，timer清零，导致之前的按钮提交无效，
+         *   直到delay时间内没有按下按钮，将执行最后一次按下提交
+         */
+        function debounce(fn, delay = 500) {
+          let timer;
+          return function () {
+            let context = this;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+              fn.apply(context, arguments);
+            }, delay);
+          };
+        }
+
+        function onSubmit() {
+          console.log(111);
+          console.log(this);
+        }
+        button.addEventListener("click", debounce(onSubmit, 1000));
+      }
+
+      {
+        const input = document.getElementById("text");
+        function throttle(fn, delay = 500) {
+          let timer;
+          return function () {
+            if(timer){
+              return
+            }
+            let context = this;
+            timer = setTimeout(() => {
+              fn.apply(context,arguments)
+              timer = null;
+            },delay);
+          };
+        }
+        function onPut() {
+          console.log(222);
+          console.log(this);
+        }
+        input.addEventListener("keyup", throttle(onPut, 1000));
+      }
+    </script>
+  </body>
+</html>

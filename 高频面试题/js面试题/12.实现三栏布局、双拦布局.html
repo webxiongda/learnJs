@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <h3>实现三列宽度自适应布局</h3>
+  <div class="container1">
+    <div id="left">我是左边</div>
+    <div id="right">我是右边</div>
+    <div id="center">我是中间</div>
+  </div>
+
+  <h3>自身浮动布局</h3>
+  <div>
+    <div id="left2">我是左边</div>
+    <div id="right2">我是右边</div>
+    <div id="center2">我是中间</div>
+  </div>
+
+  <h3>使用margin负值法进行布局</h3>
+  <div id="wrap">
+    <div id="center"></div>
+  </div>
+  <div id="left_margin"></div>
+  <div id="right_margin"></div>
+
+  <h3>使用flex盒子进行布局</h3>
+  <div id="flexbox">
+    <div id="left"></div>
+    <div id="center"></div>
+    <div id="right"></div>
+  </div>
+
+  <style>
+    .container1 {
+      position: relative;
+    }
+
+    #left {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      background-color: red;
+      left: 0;
+    }
+
+    #right {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      background-color: red;
+      right: 0;
+    }
+
+    #center {
+      height: 200px;
+      background-color: sandybrown;
+      margin-left: 200px;
+      margin-right: 200px;
+    }
+
+    #left2 {
+      width: 200px;
+      height: 150px;
+      float: left;
+      background-color: slategrey;
+    }
+
+    #right2 {
+      width: 200px;
+      height: 150px;
+      float: right;
+      background-color: slategrey;
+    }
+
+    #center2 {
+      height: 150px;
+      background-color: sandybrown;
+      margin-left: 210px;
+      margin-right: 210px;
+    }
+
+    #wrap {
+      width: 100%;
+      height: 100px;
+      background-color: #fff;
+      float: left;
+    }
+
+    #wrap #center {
+      margin: 0 210px;
+      height: 100px;
+      background-color: #ffe6b8;
+    }
+
+    #left_margin,
+    #right_margin {
+      float: left;
+      width: 200px;
+      height: 100px;
+      background-color: darkorange;
+    }
+
+    #left_margin {
+      margin-left: -100%;
+      background-color: lightpink;
+    }
+
+    #right_margin {
+      margin-left: -200px;
+    }
+
+    #flexbox {
+      width: 100%;
+      display: flex;
+      height: 100px;
+      margin: 10px;
+    }
+
+    #flexbox #left,
+    #flexbox #right {
+      width: 200px;
+      height: 100px;
+      margin: 10px;
+      background-color: lightpink;
+    }
+
+    #flexbox #center {
+      flex: 1;
+      margin: 0 20px;
+      height: 100px;
+      margin: 10px;
+      background-color: lightgreen;
+    }
+  </style>
+</body>
+
+</html>

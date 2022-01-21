@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    {
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      function newObject() {
+        // 定义空对象
+        let obj = {};
+        // 获取最前面的方法
+        var Constructor = Array.prototype.shift.apply(arguments);
+        // 让obj的原型指向构造函数的原型上
+        obj.__proto__ = Constructor.prototype;
+        // 执行  让方法上的this指向最开始创建的obj上
+        let res = Constructor.apply(obj, arguments);
+        // 如果本身有返回值的话,优先返回  返回值
+        return typeof res == "object" ? res : obj;
+      }
+
+      let o1 = newObject(Person, "liming", 22);
+      console.log(o1);
+    }
+    Function.prototype.myCall = function () {
+      let context = arguments[0] || global;
+      context.fn = this;
+      var args = [];
+      for (let i = 1; i < arguments.length; i++) {
+        args.push(arguments[i]);
+      }
+      context.fn(...args);
+      delete context.fn;
+    };
+
+    {
+      Function.prototype.myApply = function () {
+        // 获取第一个参数
+        let context = arguments[0] || global;
+        // 将this传递给context上
+        context.fn = this;
+        // 
+        let args = arguments.length > 1 ? arguments[1] : [];
+        context.fn(...args);
+        delete context.fn;
+      };
+
+      Function.prototype.myBind = function () {
+        let context = arguments[0] || global;
+        context.fn = this;
+        let args = [];
+        for (let i = 1; i < arguments.length; i++) {
+          args.push(arguments[i]);
+        }
+
+        return function () {
+          for (let i = 0; i < arguments.length; i++) {
+            args.push(arguments[i]);
+          }
+          context.fn(...args);
+          delete context.fn;
+        };
+      };
+
+      function show(...args) {
+        console.log(...args);
+        console.log(this.name);
+      }
+
+      let obj = {
+        name: "conghuhu",
+      };
+
+      show.myCall(obj, "1", "2");
+      show.myApply(obj, ["3", "4"]);
+      let bind = show.myBind(obj, "5", "6");
+      bind("7");
+    }
+
+  </script>
+</body>
+
+</html>
