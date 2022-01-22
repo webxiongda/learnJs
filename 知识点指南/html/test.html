@@ -3,36 +3,35 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    .content {
-      width: 100px;
-      height: 100px;
-      border: 20px solid #ccc;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .content1 {
-      box-sizing: content-box;
-      width: 100px;
-      height: 100px;
-      padding: 20px;
-      border: 20px solid #ccc;
-    }
-  </style>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>清除浮动</title>
 </head>
+<style>
+  .par {
+    border: 5px solid rgb(91, 243, 30);
+    width: 300px;
+  }
+
+  .par::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+
+  .child {
+    border: 5px solid rgb(233, 250, 84);
+    width: 100px;
+    height: 100px;
+    float: left;
+  }
+</style>
 
 <body>
-  <div class="content"></div>
-  <div class="content1"></div>
-
-  <script>
-    let dom = document.querySelector('.content')
-    console.log(dom.style);
-  </script>
+  <div class="par">
+    <div class="child"></div>
+    <div class="child"></div>
+  </div>
 </body>
 
 </html>
