@@ -3,7 +3,6 @@ function Person(name, age) {
   this.age = age;
 }
 function newObject() {
-  debugger
   // 定义空对象
   let obj = {};
   // 获取最前面的方法
